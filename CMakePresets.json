@@ -1,0 +1,44 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "Release",
+      "displayName": "Open Wind SE/AE/VR",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
+        "VCPKG_MANIFEST_DIR": "${sourceDir}"
+      }
+    },
+    {
+      "name": "Core",
+      "displayName": "Open Wind core only",
+      "inherits": "Release",
+      "binaryDir": "${sourceDir}/build/core",
+      "cacheVariables": {
+        "OPENWIND_BUILD_HDT_BRIDGE": "OFF",
+        "OPENWIND_BUILD_DYNAMIC_WIND_BRIDGE": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Release",
+      "configurePreset": "Release",
+      "configuration": "Release"
+    },
+    {
+      "name": "Core",
+      "configurePreset": "Core",
+      "configuration": "Release"
+    }
+  ]
+}

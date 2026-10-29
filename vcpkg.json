@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "open-wind",
+  "version-semver": "0.1.0",
+  "description": "Open Wind SKSE runtime and optional wind integration bridges",
+  "license": "GPL-3.0-only",
+  "builtin-baseline": "dddca6fa87f177e0678e2545c4b4636a44aa05bd",
+  "dependencies": [
+    "directxtk",
+    "nlohmann-json",
+    "rapidcsv",
+    "spdlog"
+  ],
+  "features": {
+    "tests": {
+      "description": "Existing CPU wind regression tests",
+      "dependencies": [
+        "catch2"
+      ]
+    }
+  }
+}
