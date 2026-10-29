@@ -372,6 +372,24 @@ its Catch2 dependency; `ctest --test-dir build/release -C Release` runs it after
 building. The numerical conformance fixture is data only; this project does
 not compile or run shader tests.
 
+## Consuming the SDK with CMake
+
+Use `FetchContent_Declare(OpenWind ...)` with this repository, a pinned commit
+hash in `GIT_TAG`, `GIT_SUBMODULES ""`, and `SOURCE_SUBDIR api`. After
+`FetchContent_MakeAvailable(OpenWind)`, link your consumer target privately to
+`OpenWind::SDK`.
+
+The SDK target supplies only public headers and the C++20 language requirement.
+It does not configure the root project, build any DLL, or fetch the runtime's
+dependencies. Consumers using renderer headers also supply DirectXTK, as before;
+the sampling and UI contracts do not require it. Runtime discovery remains through
+the exported interfaces in `OpenWind.dll`.
+
+For local SDK development, set `FETCHCONTENT_SOURCE_DIR_OPENWIND` to the absolute
+path of an Open Wind checkout. This bypasses the Git download. Remote consumers
+need repository access; public CI cannot fetch this repository while it is private.
+The SDK uses the repository's GPL license; see `COPYING` and `NOTICE.md`.
+
 ## Repository layout
 
 | Path | Purpose |
@@ -379,6 +397,7 @@ not compile or run shader tests.
 | `src/Runtime/` | Wind state, CPU sampling, effects, shelter, settings and commands |
 | `src/Integrations/` | Runtime bridge discovery and the two optional bridge DLLs |
 | `include/OpenWind/` | Public sampling, renderer, UI and bridge interfaces |
+| `api/` | Headers-only CMake SDK target |
 | `extern/` | Generic host API headers and their provenance/license notices |
 | `tests/` | Existing CPU wind regression tests and numerical fixture |
 
