@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: LGPL-3.0-or-later
+// See COPYING.LESSER and NOTICE.md for licensing.
+
 #pragma once
 
 #include <cstdint>

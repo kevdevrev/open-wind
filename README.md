@@ -388,7 +388,8 @@ the exported interfaces in `OpenWind.dll`.
 For local SDK development, set `FETCHCONTENT_SOURCE_DIR_OPENWIND` to the absolute
 path of an Open Wind checkout. This bypasses the Git download. Remote consumers
 need repository access; public CI cannot fetch this repository while it is private.
-The SDK uses the repository's GPL license; see `COPYING` and `NOTICE.md`.
+The public SDK headers use LGPL-3.0-or-later; see `COPYING.LESSER`, `COPYING`
+and `NOTICE.md`. The implementation retains the default GPL license.
 
 ## Repository layout
 
@@ -408,5 +409,17 @@ DLLs connect those hosts to Open Wind's sampling API.
 
 ## License
 
-Open Wind contains wind code extracted from Open Shaders and is distributed under
-the GNU General Public License. See `COPYING` and `NOTICE.md`.
+### Default
+
+Open Wind contains wind code extracted from Open Shaders. Its default license is
+[GPL-3.0-or-later](COPYING), with the Modding Exception and GPL-3.0 Linking Exception
+(with Corresponding Source) in [EXCEPTIONS.md](EXCEPTIONS.md). The Modded Code is
+Skyrim and its variants; the Modding Libraries are SKSE and CommonLib and its
+variants. Third-party files retain their own license notices.
+
+### Public API headers
+
+All `.h` files under `include/OpenWind/` use [LGPL-3.0-or-later](COPYING.LESSER),
+including the public sampling, renderer, UI and bridge contracts and their
+supporting data types. This separate license does not apply to the implementation
+under `src/`. See [NOTICE.md](NOTICE.md) for the scope and attribution.

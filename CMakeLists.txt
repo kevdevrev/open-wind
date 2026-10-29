@@ -112,7 +112,7 @@ endif()
 
 install(TARGETS OpenWind RUNTIME DESTINATION SKSE/Plugins COMPONENT Runtime)
 install(
-    FILES README.md COPYING NOTICE.md
+    FILES README.md COPYING COPYING.LESSER EXCEPTIONS.md NOTICE.md
     DESTINATION SKSE/Plugins/OpenWind
     COMPONENT Runtime
 )
@@ -135,7 +135,7 @@ endif()
 foreach(bridge HDT DynamicWind)
     if(TARGET OpenWind${bridge})
         install(
-            FILES README.md COPYING NOTICE.md
+            FILES README.md COPYING COPYING.LESSER EXCEPTIONS.md NOTICE.md
             DESTINATION SKSE/Plugins/OpenWind/licenses/OpenWind${bridge}
             COMPONENT ${bridge}Bridge
         )
@@ -147,6 +147,12 @@ install(
     COMPONENT SDK
     EXCLUDE_FROM_ALL
     FILES_MATCHING PATTERN "*.h"
+)
+install(
+    FILES COPYING COPYING.LESSER EXCEPTIONS.md NOTICE.md
+    DESTINATION include/OpenWind
+    COMPONENT SDK
+    EXCLUDE_FROM_ALL
 )
 
 set(CPACK_GENERATOR ZIP)
